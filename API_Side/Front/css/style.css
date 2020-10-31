@@ -1,0 +1,63 @@
+/*===================================
+	CHANGES FOR ALL
+=================================*/
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+/* ======================================
+	HEADER AND SIDEBAR STYLES
+======================================*/
+
+header {
+	padding: 5px;
+	width: 100%;
+	height: 10%;
+	background-color: darkblue;
+}
+
+header h2{
+	color: white;
+	text-align: center;
+	text-transform: capitalize;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+aside{
+	position: fixed;
+	float: left;
+	height: 100%;
+	width: 15%;
+	padding: 10px;
+	z-index: 10;
+}
+
+aside ul{
+	list-style-type: none;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+aside a:link, aside a:visited{
+	color: black;
+}
+
+aside a:hover{
+	color: white;
+	font-weight: bold;
+}
+
+/*==================================
+	CONTENT PAGE AREA SETTINGS
+==================================*/
+#contentPage {
+	float: right;
+	width: 85%;
+	padding: 10px;
+}
