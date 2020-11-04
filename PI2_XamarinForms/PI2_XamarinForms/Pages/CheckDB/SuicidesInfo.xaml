@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PI2_XamarinForms.Pages.CheckDB.SuicidesInfo"
+             NavigationPage.HasBackButton="True"
+             Title="Structure your Search">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="White" Padding="15">
+            <Label Text="Please, fill all inputs" FontSize="Large" FontAttributes="Bold"/>
+            <StackLayout x:Name="Stkoptions" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                         BackgroundColor="White" Padding="25" Spacing="10">
+                <Picker x:Name="PkSearch" HorizontalOptions="FillAndExpand" Title="Type of Search?" 
+                        SelectedIndexChanged="PkSearch_IndexChanged">
+                    <Picker.Items>
+                        <x:String>Year</x:String>
+                        <x:String>Country</x:String>
+                        <x:String>Sex</x:String>
+                        <x:String>Age</x:String>
+                        <x:String>Suicides Number</x:String>
+                        <x:String>Population</x:String>
+                        <x:String>PIB Per Capita</x:String>
+                        <x:String>Generation</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+            <Button Text="Search" Clicked="doSearch"/>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

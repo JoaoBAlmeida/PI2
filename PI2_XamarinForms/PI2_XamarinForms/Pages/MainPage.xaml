@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PI2_XamarinForms.Pages.MainPage">
+
+    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="White" Spacing="5">
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0" VerticalOptions="Start">
+            <Label Text="NAMEP" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Grid HorizontalOptions="FillAndExpand" Padding="20, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label HorizontalOptions="Start" VerticalOptions="Center" Grid.Row="0"
+                   Text="Aplicativo de estudo sobre Suicidios Globalmente" FontAttributes="Bold" FontSize="Large" LineBreakMode="WordWrap"/>
+            <StackLayout HorizontalOptions="End" Grid.Row="1">
+                <Label Text="Equipe: " HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                <Label Text="Felipe Emmanouil Martires Stamoglou" HorizontalTextAlignment="End"/>
+                <Label Text="Gabriel Eraldo Melo" HorizontalTextAlignment="End"/>
+                <Label Text="João Pedro Barbosa de Almeida" HorizontalTextAlignment="End"/>
+                <Label Text="Matheus Carvalho Nascimento de Souza" HorizontalTextAlignment="End"/>
+                <Label Text="Yuri Papaterra Fonseca" HorizontalTextAlignment="End"/>
+                <!-- Add Antonio Ferreira por conta do IHM -->
+            </StackLayout>
+        </Grid>
+        <Button Text="BEGIN" FontSize="Large" BorderColor="Black" BackgroundColor="#2196F3"
+                VerticalOptions="End" HorizontalOptions="Center" Padding="5" Clicked="goToCenterPage"/>
+    </StackLayout>
+
+</ContentPage>

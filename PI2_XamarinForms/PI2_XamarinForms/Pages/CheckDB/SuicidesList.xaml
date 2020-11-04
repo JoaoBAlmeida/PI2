@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PI2_XamarinForms.Pages.CheckDB.SuicidesList">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"
+                     Padding="20" Spacing="10">
+            <ListView x:Name="ListSuicidal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                                    <Label Text="Country: "/>
+                                    <Label Text="{Binding Country}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                                    <Label Text="Year: " FontSize="Small"/>
+                                    <Label Text="{Binding Year}" FontSize="Small"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                                    <Label Text="Age: "/>
+                                    <Label Text="{Binding Age}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                    <Label Text="Sex: " FontSize="Small"/>
+                                    <Label Text="{Binding Sex}" FontSize="Small"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                                    <Label Text="Generation: "/>
+                                    <Label Text="{Binding Generation}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                                    <Label Text="Population: " FontSize="Small"/>
+                                    <Label Text="{Binding Population}" FontSize="Small"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="3">
+                                    <Label Text="PIB per Year: "/>
+                                    <Label Text="{Binding PIB_Year}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="3">
+                                    <Label Text="PIB per Capita: " FontSize="Small"/>
+                                    <Label Text="{Binding PIB_Capita}" FontSize="Small"/>
+                                </StackLayout>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
