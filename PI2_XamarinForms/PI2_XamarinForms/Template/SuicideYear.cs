@@ -9,7 +9,6 @@ namespace PI2_XamarinForms.Template
     public class SuicideYear : DBSuicideDAO
     {
         private string year;
-        private string compare = "=";
 
         public SuicideYear(string[] args)
         {

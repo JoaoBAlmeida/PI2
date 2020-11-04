@@ -34,8 +34,14 @@
                                     <Label Text="{Binding Country}"/>
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                                    <Label Text="Year: " FontSize="Small"/>
-                                    <Label Text="{Binding Year}" FontSize="Small"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Year: " FontSize="Small"/>
+                                        <Label Text="{Binding Year}" FontSize="Small"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Suicides: " FontSize="Small"/>
+                                        <Label Text="{Binding Suicides_no}" FontSize="Small"/>
+                                    </StackLayout>
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1">

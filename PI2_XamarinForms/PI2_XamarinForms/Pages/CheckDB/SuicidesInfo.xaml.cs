@@ -1,4 +1,5 @@
-﻿using PI2_XamarinForms.Factory;
+﻿using PI2_XamarinForms.Controllers;
+using PI2_XamarinForms.Factory;
 using PI2_XamarinForms.Template;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,13 @@ namespace PI2_XamarinForms.Pages.CheckDB
             Country,
             Sex,
             Age,
-            Generation = 7
+            Generation = 8
         }
         private enum entriestype
         {
             Suicides_Number = 4,
             Population,
+            PIB_for_year,
             PIB_per_capita
         }
 
@@ -36,6 +38,8 @@ namespace PI2_XamarinForms.Pages.CheckDB
 
         private Picker ChosenPicker;
         private Picker ComparisonPicker;
+        private Entry ValueEntry;
+        private UIController_SInfo UIControl = new UIController_SInfo();
 
         #endregion
         public SuicidesInfo()
@@ -61,16 +65,59 @@ namespace PI2_XamarinForms.Pages.CheckDB
                     Navigation.PushAsync(new SuicidesList(new SuicideYear(generateArgs())));
                     return;
                 }
+                else if(PkSearch.SelectedIndex == 1)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicideCountry(getArg())));
+                    return;
+                }
+                else if(PkSearch.SelectedIndex == 2)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicideSex(getArg())));
+                    return;
+                }
+                else if(PkSearch.SelectedIndex == 3)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicideAge(getArg())));
+                    return;
+                }
+                else if(PkSearch.SelectedIndex == 8)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicideGen(getArg())));
+                    return;
+                }
                 else
                 {
-                    DisplayAlert("Picker", "Picker Type", "OK");
+                    DisplayAlert("ERROR", "Selected option not found", "OK");
                     return;
                 }
             }
             else if(Enum.IsDefined(typeof(entriestype), PkSearch.SelectedIndex))
             {
-                DisplayAlert("Entry", "Entry Type", "OK");
-                return;
+                if (PkSearch.SelectedIndex == 4)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicideNum(collectArgs())));
+                    return;
+                }
+                else if (PkSearch.SelectedIndex == 5)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicidePopulation(collectArgs())));
+                    return;
+                }
+                else if (PkSearch.SelectedIndex == 6)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicidePIB_Y(collectArgs())));
+                    return;
+                }
+                else if (PkSearch.SelectedIndex == 7)
+                {
+                    Navigation.PushAsync(new SuicidesList(new SuicidePIB_C(collectArgs())));
+                    return;
+                }
+                else
+                {
+                    DisplayAlert("ERROR", "Selected option not found", "OK");
+                    return;
+                }
             }
             else
             {
@@ -85,11 +132,75 @@ namespace PI2_XamarinForms.Pages.CheckDB
             ClearScreen();
             if (PkSearch.SelectedIndex == 0)
             {
-                Stkoptions.Children.Add(generateYearPicker());
-                Stkoptions.Children.Add(generateComparePicker());
+                ChosenPicker = UIControl.generateYearPicker();
+                ComparisonPicker = UIControl.generateComparePicker();
+                ComparisonPicker.SelectedIndex = 0;
+                Stkoptions.Children.Add(ChosenPicker);
+                Stkoptions.Children.Add(ComparisonPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 1)
+            {
+                ChosenPicker = UIControl.generateCountryPicker();
+                Stkoptions.Children.Add(ChosenPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 2)
+            {
+                ChosenPicker = UIControl.generateSexPicker();
+                Stkoptions.Children.Add(ChosenPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 3)
+            {
+                ChosenPicker = UIControl.generateAgePicker();
+                Stkoptions.Children.Add(ChosenPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 4)
+            {
+                ValueEntry = UIControl.generateSuicideNoEntry();
+                ComparisonPicker = UIControl.generateComparePicker();
+                ComparisonPicker.SelectedIndex = 0;
+                Stkoptions.Children.Add(ValueEntry);
+                Stkoptions.Children.Add(ComparisonPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 5)
+            {
+                ValueEntry = UIControl.generatePopulationEntry();
+                ComparisonPicker = UIControl.generateComparePicker();
+                ComparisonPicker.SelectedIndex = 0;
+                Stkoptions.Children.Add(ValueEntry);
+                Stkoptions.Children.Add(ComparisonPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 6)
+            {
+                ValueEntry = UIControl.generatePIBYEntry();
+                ComparisonPicker = UIControl.generateComparePicker();
+                ComparisonPicker.SelectedIndex = 0;
+                Stkoptions.Children.Add(ValueEntry);
+                Stkoptions.Children.Add(ComparisonPicker);
+                return;
+            }
+            else if(PkSearch.SelectedIndex == 7)
+            {
+                ValueEntry = UIControl.generatePIBCEntry();
+                ComparisonPicker = UIControl.generateComparePicker();
+                ComparisonPicker.SelectedIndex = 0;
+                Stkoptions.Children.Add(ValueEntry);
+                Stkoptions.Children.Add(ComparisonPicker);
+                return;
+            }
+            else if (PkSearch.SelectedIndex == 8)
+            {
+                ChosenPicker = UIControl.generateGenPicker();
+                Stkoptions.Children.Add(UIControl.generateGenPicker());
+                return;
             }
         }
-
+        #region Picker Data
         private string[] generateArgs()
         {
             string[] args = new string[2];
@@ -97,6 +208,21 @@ namespace PI2_XamarinForms.Pages.CheckDB
             args[1] = ComparisonPicker.SelectedItem.ToString();
             return args;
         }
+        private string getArg()
+        {
+            return ChosenPicker.SelectedItem.ToString();
+        }
+        #endregion
+
+        #region Entry Data
+        private string[] collectArgs()
+        {
+            string[] args = new string[2];
+            args[0] = ValueEntry.Text.Trim();
+            args[1] = ComparisonPicker.SelectedItem.ToString();
+            return args;
+        }
+        #endregion
 
         #region UI Control
 
@@ -110,21 +236,7 @@ namespace PI2_XamarinForms.Pages.CheckDB
 
         #endregion
 
-        #region Picker Factory Files
-        private Picker generateComparePicker()
-        {
-            FA_ComparisonPicker CP = new FA_ComparisonPicker();
-            ComparisonPicker = CP.generatePicker();
-            ComparisonPicker.SelectedIndex = 0;
-            return ComparisonPicker;
-        }
-        private Picker generateYearPicker()
-        {
-            FA_YearPicker YP = new FA_YearPicker();
-            ChosenPicker = YP.generatePicker();
-            return ChosenPicker;
-        }
-        #endregion
+        
 
     }
 }

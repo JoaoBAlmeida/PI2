@@ -26,6 +26,7 @@
                         <x:String>Age</x:String>
                         <x:String>Suicides Number</x:String>
                         <x:String>Population</x:String>
+                        <x:String>PIB Por Ano</x:String>
                         <x:String>PIB Per Capita</x:String>
                         <x:String>Generation</x:String>
                     </Picker.Items>
