@@ -25,7 +25,7 @@ namespace PI2_XamarinForms.Template
         }
 
         //Public function to get info from DB
-        public List<Suicides> GetFromDB()
+        public MySqlDataReader GetFromDB()
         {
             try
             {
@@ -36,42 +36,8 @@ namespace PI2_XamarinForms.Template
             {
                 rdr = null;
             }
-            //Conversion DataReader to List<Suicides>
-            List<Suicides> suicides = new List<Suicides>();
-            if(rdr != null)
-                while (rdr.Read())
-                {
-                    suicides.Add(new Suicides()
-                    {
-                        Country = rdr["country"].ToString(),
-                        Year = int.Parse(rdr["year"].ToString()),
-                        Sex = rdr["sex"].ToString(),
-                        Age = rdr["age"].ToString(),
-                        Suicides_no = int.Parse(rdr["suicides_no"].ToString()),
-                        Population = int.Parse(rdr["population"].ToString()),
-                        PIB_Year = rdr["gdp_for_year"].ToString(),
-                        PIB_Capita = rdr["gdp_per_capita"].ToString(),
-                        Generation = rdr["generation"].ToString()
-                    });
-                }
-            else
-            {
-                suicides.Add(new Suicides()
-                {
-                    Country = "empty",
-                    Year = 0,
-                    Sex = "empty",
-                    Age = "empty",
-                    Suicides_no = 0,
-                    Population = 0,
-                    PIB_Year = "empty",
-                    PIB_Capita = "empty",
-                    Generation = "empty"
-                });
-            }
-            
-            rdr.Close();
-            return suicides;
+
+            return rdr;
         }
 
         //Public Function to close DB connection

@@ -6,10 +6,7 @@
              Title="Structure your Search">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="VerticalOptions" Value="End"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-            </Style>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -32,7 +29,8 @@
                     </Picker.Items>
                 </Picker>
             </StackLayout>
-            <Button Text="Search" Clicked="doSearch"/>
+            <Button VerticalOptions="End" HorizontalOptions="FillAndExpand"
+                    Text="Search" FontAttributes="Bold" FontSize="Large" Clicked="doSearch"/>
         </StackLayout>
         
     </ContentPage.Content>

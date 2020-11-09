@@ -2,7 +2,6 @@ C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\bin\Debug\netstand
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\bin\Debug\netstandard2.0\PI2_XamarinForms.dll
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\bin\Debug\netstandard2.0\ref\PI2_XamarinForms.dll
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\bin\Debug\netstandard2.0\PI2_XamarinForms.pdb
-C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\PI2_XamarinForms.csprojAssemblyReference.cache
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\Pages\CenterPage.xaml.g.cs
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\Pages\MainPage.xaml.g.cs
@@ -15,3 +14,4 @@ C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstand
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\PI2_XamarinForms.pdb
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\Pages\CheckDB\SuicidesInfo.xaml.g.cs
 C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\Pages\CheckDB\SuicidesList.xaml.g.cs
+C:\Users\jpbar\source\repos\PI2_XamarinForms\PI2_XamarinForms\obj\Debug\netstandard2.0\PI2_XamarinForms.csprojAssemblyReference.cache

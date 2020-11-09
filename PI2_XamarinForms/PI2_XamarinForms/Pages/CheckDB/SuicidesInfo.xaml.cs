@@ -1,5 +1,7 @@
-﻿using PI2_XamarinForms.Controllers;
+﻿using Org.BouncyCastle.Crypto.Prng;
+using PI2_XamarinForms.Controllers;
 using PI2_XamarinForms.Factory;
+using PI2_XamarinForms.Strategy;
 using PI2_XamarinForms.Template;
 using System;
 using System.Collections.Generic;
@@ -39,7 +41,7 @@ namespace PI2_XamarinForms.Pages.CheckDB
         private Picker ChosenPicker;
         private Picker ComparisonPicker;
         private Entry ValueEntry;
-        private UIController_SInfo UIControl = new UIController_SInfo();
+        private UIAssist UIControl = new UIAssist();
 
         #endregion
         public SuicidesInfo()
@@ -52,174 +54,83 @@ namespace PI2_XamarinForms.Pages.CheckDB
             if(PkSearch.SelectedIndex < 0)
             {
                 DisplayAlert("ERROR", "Need to choose a type of search", "OK");
-            }
-            else if(Enum.IsDefined(typeof(pickerstype), PkSearch.SelectedIndex))
-            {
-                if (ChosenPicker.SelectedIndex < 0)
-                {
-                    DisplayAlert("ERROR", "Need to choose the referenced value to search", "OK");
-                    return;
-                }
-                if (PkSearch.SelectedIndex == 0)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideYear(generateArgs())));
-                    return;
-                }
-                else if(PkSearch.SelectedIndex == 1)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideCountry(getArg())));
-                    return;
-                }
-                else if(PkSearch.SelectedIndex == 2)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideSex(getArg())));
-                    return;
-                }
-                else if(PkSearch.SelectedIndex == 3)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideAge(getArg())));
-                    return;
-                }
-                else if(PkSearch.SelectedIndex == 8)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideGen(getArg())));
-                    return;
-                }
-                else
-                {
-                    DisplayAlert("ERROR", "Selected option not found", "OK");
-                    return;
-                }
-            }
-            else if(Enum.IsDefined(typeof(entriestype), PkSearch.SelectedIndex))
-            {
-                if (PkSearch.SelectedIndex == 4)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicideNum(collectArgs())));
-                    return;
-                }
-                else if (PkSearch.SelectedIndex == 5)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicidePopulation(collectArgs())));
-                    return;
-                }
-                else if (PkSearch.SelectedIndex == 6)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicidePIB_Y(collectArgs())));
-                    return;
-                }
-                else if (PkSearch.SelectedIndex == 7)
-                {
-                    Navigation.PushAsync(new SuicidesList(new SuicidePIB_C(collectArgs())));
-                    return;
-                }
-                else
-                {
-                    DisplayAlert("ERROR", "Selected option not found", "OK");
-                    return;
-                }
-            }
-            else
-            {
-                DisplayAlert("ERROR", "Picker não está reconhecendo opções\nPor favor, selecione uma opção válida", "OK");
                 return;
             }
-            
+
+            try
+            {
+                Navigation.PushAsync(UIControl.CreatePage(PkSearch.SelectedIndex, getArgs()));
+            }
+            catch (Exception error)
+            {
+                DisplayAlert("ERROR", error.Message, "OK");
+                return;
+            }
+
         }
 
         private void PkSearch_IndexChanged(object sender, EventArgs e)
         {
             ClearScreen();
-            if (PkSearch.SelectedIndex == 0)
+            if (Enum.IsDefined(typeof(pickerstype), PkSearch.SelectedIndex))
             {
-                ChosenPicker = UIControl.generateYearPicker();
-                ComparisonPicker = UIControl.generateComparePicker();
-                ComparisonPicker.SelectedIndex = 0;
-                Stkoptions.Children.Add(ChosenPicker);
-                Stkoptions.Children.Add(ComparisonPicker);
-                return;
+                UIControl.SetStrategy(new PickerStrategy());
+                List<object> UIElem = UIControl.CreateInfoUI(PkSearch.SelectedIndex);
+                try
+                {
+                    if(UIElem.Count == 2)
+                    {
+                        ChosenPicker = (Picker)UIElem[0];
+                        ComparisonPicker = (Picker)UIElem[0];
+                        ComparisonPicker.SelectedIndex = 0;
+                        Stkoptions.Children.Add(ChosenPicker);
+                        Stkoptions.Children.Add(ComparisonPicker);
+                    }
+                    else
+                    {
+                        ChosenPicker = (Picker)UIElem[0];
+                        Stkoptions.Children.Add(ChosenPicker);
+                    }  
+                }catch(Exception error)
+                {
+                    DisplayAlert("ERROR", error.Message, "OK");
+                }
             }
-            else if(PkSearch.SelectedIndex == 1)
+            else if (Enum.IsDefined(typeof(entriestype), PkSearch.SelectedIndex))
             {
-                ChosenPicker = UIControl.generateCountryPicker();
-                Stkoptions.Children.Add(ChosenPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 2)
-            {
-                ChosenPicker = UIControl.generateSexPicker();
-                Stkoptions.Children.Add(ChosenPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 3)
-            {
-                ChosenPicker = UIControl.generateAgePicker();
-                Stkoptions.Children.Add(ChosenPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 4)
-            {
-                ValueEntry = UIControl.generateSuicideNoEntry();
-                ComparisonPicker = UIControl.generateComparePicker();
-                ComparisonPicker.SelectedIndex = 0;
-                Stkoptions.Children.Add(ValueEntry);
-                Stkoptions.Children.Add(ComparisonPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 5)
-            {
-                ValueEntry = UIControl.generatePopulationEntry();
-                ComparisonPicker = UIControl.generateComparePicker();
-                ComparisonPicker.SelectedIndex = 0;
-                Stkoptions.Children.Add(ValueEntry);
-                Stkoptions.Children.Add(ComparisonPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 6)
-            {
-                ValueEntry = UIControl.generatePIBYEntry();
-                ComparisonPicker = UIControl.generateComparePicker();
-                ComparisonPicker.SelectedIndex = 0;
-                Stkoptions.Children.Add(ValueEntry);
-                Stkoptions.Children.Add(ComparisonPicker);
-                return;
-            }
-            else if(PkSearch.SelectedIndex == 7)
-            {
-                ValueEntry = UIControl.generatePIBCEntry();
-                ComparisonPicker = UIControl.generateComparePicker();
-                ComparisonPicker.SelectedIndex = 0;
-                Stkoptions.Children.Add(ValueEntry);
-                Stkoptions.Children.Add(ComparisonPicker);
-                return;
-            }
-            else if (PkSearch.SelectedIndex == 8)
-            {
-                ChosenPicker = UIControl.generateGenPicker();
-                Stkoptions.Children.Add(UIControl.generateGenPicker());
-                return;
+                UIControl.SetStrategy(new EntryStrategy());
+                List<object> UIElem = UIControl.CreateInfoUI(PkSearch.SelectedIndex);
+                try
+                {
+                    ValueEntry = (Entry)UIElem[0];
+                    ComparisonPicker = (Picker)UIElem[0];
+                    ComparisonPicker.SelectedIndex = 0;
+                }
+                catch (Exception error)
+                {
+                    DisplayAlert("ERROR", error.Message, "OK");
+                }
             }
         }
-        #region Picker Data
-        private string[] generateArgs()
-        {
-            string[] args = new string[2];
-            args[0] = ChosenPicker.SelectedItem.ToString();
-            args[1] = ComparisonPicker.SelectedItem.ToString();
-            return args;
-        }
-        private string getArg()
-        {
-            return ChosenPicker.SelectedItem.ToString();
-        }
-        #endregion
 
-        #region Entry Data
-        private string[] collectArgs()
+        #region Collect Options Data
+        private string[] getArgs()
         {
+            //TODO - Search options about sending this function into a controller
+
             string[] args = new string[2];
-            args[0] = ValueEntry.Text.Trim();
-            args[1] = ComparisonPicker.SelectedItem.ToString();
+            if (Stkoptions.Children[1].GetType() == typeof(Picker))
+            {
+                if (ChosenPicker.SelectedIndex < 0) throw new Exception("Need to choose the referenced value to search");
+                args[0] = ChosenPicker.SelectedItem.ToString();
+            }
+            else
+            {
+                if (ValueEntry.Text.Trim().Length <= 0) throw new Exception("Need to choose the referenced value to search");
+                args[0] = ValueEntry.Text.Trim();
+            }
+            if (Stkoptions.Children.Count == 3)
+                args[1] = ComparisonPicker.SelectedItem.ToString();
             return args;
         }
         #endregion

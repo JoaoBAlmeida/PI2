@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PI2_XamarinForms.Pages.CheckDB.SuicidesList">
+             x:Class="PI2_XamarinForms.Pages.CheckDB.SuicidesList"
+             Title="See your results">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -12,7 +13,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"
-                     Padding="20" Spacing="10">
+                     x:Name="StkContent" Padding="20" Spacing="10">
+            <SearchBar x:Name="SrchBar" TextChanged="SrchContent_TextChanged"/>
             <ListView x:Name="ListSuicidal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
