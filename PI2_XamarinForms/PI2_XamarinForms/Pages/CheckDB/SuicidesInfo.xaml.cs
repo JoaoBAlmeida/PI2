@@ -81,7 +81,7 @@ namespace PI2_XamarinForms.Pages.CheckDB
                     if(UIElem.Count == 2)
                     {
                         ChosenPicker = (Picker)UIElem[0];
-                        ComparisonPicker = (Picker)UIElem[0];
+                        ComparisonPicker = (Picker)UIElem[1];
                         ComparisonPicker.SelectedIndex = 0;
                         Stkoptions.Children.Add(ChosenPicker);
                         Stkoptions.Children.Add(ComparisonPicker);
@@ -103,8 +103,10 @@ namespace PI2_XamarinForms.Pages.CheckDB
                 try
                 {
                     ValueEntry = (Entry)UIElem[0];
-                    ComparisonPicker = (Picker)UIElem[0];
+                    ComparisonPicker = (Picker)UIElem[1];
                     ComparisonPicker.SelectedIndex = 0;
+                    Stkoptions.Children.Add(ValueEntry);
+                    Stkoptions.Children.Add(ComparisonPicker);
                 }
                 catch (Exception error)
                 {
@@ -116,8 +118,6 @@ namespace PI2_XamarinForms.Pages.CheckDB
         #region Collect Options Data
         private string[] getArgs()
         {
-            //TODO - Search options about sending this function into a controller
-
             string[] args = new string[2];
             if (Stkoptions.Children[1].GetType() == typeof(Picker))
             {

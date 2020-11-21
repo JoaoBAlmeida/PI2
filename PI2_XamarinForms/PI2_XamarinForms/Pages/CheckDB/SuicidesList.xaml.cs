@@ -1,5 +1,6 @@
 ﻿using PI2_XamarinForms.Controllers;
 using PI2_XamarinForms.Models;
+using PI2_XamarinForms.State;
 using PI2_XamarinForms.Strategy;
 using PI2_XamarinForms.Template;
 using PI2_XamarinForms.ViewModel;
@@ -24,7 +25,7 @@ namespace PI2_XamarinForms.Pages.CheckDB
         DBSuicideDAO DB;
         List<Suicides> suicides;
         UIGenerator UIControl = new UIGenerator();
-        SearchStrategy SrchStrategy = new SearchStrategy();
+        ModelState SrchModel = new ModelState();
         #endregion
 
         public SuicidesList(DBSuicideDAO dB)
@@ -39,17 +40,16 @@ namespace PI2_XamarinForms.Pages.CheckDB
         }
         protected override bool OnBackButtonPressed()
         {
-            //TODO - Try to close database without assimilating to a local variable
+            //TODO - Use a SERVICE to open and close the DB by external control
             DB.CloseDB();
             return base.OnBackButtonPressed();
         }
 
         private void SrchContent_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO - Create a Strategy Context to hold the strategy;
             try
             {
-                ListSuicidal.ItemsSource = SrchStrategy.SearchedParameters(picker.SelectedIndex, SrchBar.Text.Trim(), suicides);
+                ListSuicidal.ItemsSource = SrchModel.TreatedList(SrchBar.Text.Trim(), suicides, picker.SelectedIndex);
             }
             catch(Exception error)
             {
