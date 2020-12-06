@@ -25,6 +25,7 @@ namespace PI2_XamarinForms.Pages
         private void GoMining(object sender, EventArgs e)
         {
             //TODO - Implement page of mining, after deciding on apropriate metodologies
+            //TODO - Implement MicroCharts from graphs visuals!
         }
     }
 }

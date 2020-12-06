@@ -19,12 +19,16 @@ namespace PI2_XamarinForms.State
             _state = new YearState();
         }
 
-        public IEnumerable<Suicides> TreatedList(string keyword, List<Suicides> suicides, int choice)
+        public void CheckState(int choice)
         {
-            if(choice != _state.GetReference())
+            if (choice != _state.GetReference())
             {
                 FixState(choice);
             }
+        }
+
+        public IEnumerable<Suicides> TreatedList(string keyword, List<Suicides> suicides)
+        {
             return _state.SearchedList(keyword, suicides);
         }
 

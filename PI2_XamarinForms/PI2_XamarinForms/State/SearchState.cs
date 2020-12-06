@@ -8,9 +8,7 @@ namespace PI2_XamarinForms.State
 {
     public abstract class SearchState
     {
-        //TODO - Create dictionary for new states based on your choice
-
-        protected int reference = -2;
+        protected int reference = 0;
 
         public int GetReference()
         {

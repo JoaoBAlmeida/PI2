@@ -32,7 +32,7 @@ namespace PI2_XamarinForms.Pages.CheckDB
         {
             InitializeComponent();
             DB = dB;
-            picker = UIControl.generateSearchPicker();
+            SetPicker();
             StkContent.Children.Insert(0, picker);
             SuicideViewModel VM = new SuicideViewModel(DB);
             ListSuicidal.ItemsSource = VM.Items;
@@ -45,11 +45,30 @@ namespace PI2_XamarinForms.Pages.CheckDB
             return base.OnBackButtonPressed();
         }
 
+        private void SetPicker()
+        {
+            picker = UIControl.generateSearchPicker();
+            picker.SelectedIndex = 0;
+            picker.SelectedIndexChanged += picker_SelectedIndexChanged;
+        }
+
+        private void picker_SelectedIndexChanged(object sender, EventArgs args)
+        {
+            try
+            {
+                SrchModel.CheckState(picker.SelectedIndex);
+            }
+            catch(Exception er)
+            {
+                DisplayAlert("Error", er.Message, "OK");
+            }
+        }
+
         private void SrchContent_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
-                ListSuicidal.ItemsSource = SrchModel.TreatedList(SrchBar.Text.Trim(), suicides, picker.SelectedIndex);
+                ListSuicidal.ItemsSource = SrchModel.TreatedList(SrchBar.Text.Trim(), suicides);
             }
             catch(Exception error)
             {
