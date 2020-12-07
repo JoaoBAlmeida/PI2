@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PI2_XamarinForms.Pages.MinedDB.MethodsPage"
+             Title="Methods Hub Center">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="CharacterSpacing" Value="3"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0"
+               BorderColor="Purple" CornerRadius="10" HasShadow="True" IsClippedToBounds="True" Padding="30"
+               Margin="10">
+            <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Padding="10" Spacing="10">
+                <Button Text="KNN Method" Clicked="goKNN"/>
+                <Button Text="-- Insert more methods here --"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
