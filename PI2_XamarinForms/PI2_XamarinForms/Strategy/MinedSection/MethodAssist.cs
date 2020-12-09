@@ -15,7 +15,7 @@ namespace PI2_XamarinForms.Strategy.MinedSection
 
         public MethodAssist() { }
 
-        public object CreatePicker()
+        public List<object> CreatePickers()
         {
             return _strategy.UISupport();
         }

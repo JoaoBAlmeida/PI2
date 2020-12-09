@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PI2_XamarinForms.Strategy.MinedSection.KNNDictionary"
+             Title="KNN Dataset Dictionary"
+             NavigationPage.HasBackButton="True">
+    <ContentPage.Content>
+        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Grid.Column="0"
+               BorderColor="Purple" CornerRadius="10" HasShadow="True" IsClippedToBounds="True" Padding="30"
+               Margin="10">
+            <Grid VerticalOptions="Start" HorizontalOptions="FillAndExpand" Padding="10" RowSpacing="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="KNN" FontAttributes="Bold" FontSize="Large"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="Cálculos que utilizam uma classificação em grupo de proximidade entre seus fatores estudados" FontSize="Medium" HorizontalTextAlignment="End"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Text="Figura" FontAttributes="Bold" FontSize="Large"/>
+                <Label Grid.Column="1" Grid.Row="1" Text="No X encontram-se os paises, enumerados de 0 a 100.&#x0a;O Y trata-se de uma média entre a população e todos os decorridos naquele país" FontSize="Medium" HorizontalTextAlignment="End"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Text="Checar dados utilizados" FontAttributes="Bold" FontSize="Large"/>
+                <Label Grid.Column="1" Grid.Row="2" Text="Arquivo relacionado à média de suicidios por faixa-etária no país e sexo específicados ao longo dos anos" FontSize="Medium" HorizontalTextAlignment="End"/>
+
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

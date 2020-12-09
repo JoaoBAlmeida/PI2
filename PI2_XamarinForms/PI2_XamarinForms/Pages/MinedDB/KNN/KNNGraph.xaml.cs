@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PI2_XamarinForms.Template;
+using PI2_XamarinForms.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,51 +19,22 @@ namespace PI2_XamarinForms.Pages.MinedDB.KNN
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class KNNGraph : ContentPage
     {
-        //TODO - Set this list creation into DB Template
-        List<Entry> values = new List<Entry>
-        {
-            new Entry(300)
-            {
-                Color = SKColor.Parse(Color.IndianRed.ToHex().ToString()),
-                Label = "5 - 14 year",
-                ValueLabel = "300"
-            },
-            new Entry(250)
-            {
-                Color = SKColor.Parse(Color.Red.ToHex().ToString()),
-                Label = "15 - 24 years",
-                ValueLabel = "250"
-            },
-            new Entry(200)
-            {
-                Color = SKColor.Parse(Color.DarkOrange.ToHex().ToString()),
-                Label = "25 - 34 years",
-                ValueLabel = "200"
-            },
-            new Entry(150)
-            {
-                Color = SKColor.Parse(Color.Orange.ToHex().ToString()),
-                Label = "35 - 54 years",
-                ValueLabel = "150"
-            },
-            new Entry(100)
-            {
-                Color = SKColor.Parse(Color.Yellow.ToHex().ToString()),
-                Label = "55 - 74 years",
-                ValueLabel = "100"
-            },
-            new Entry(500)
-            {
-                Color = SKColor.Parse(Color.YellowGreen.ToHex().ToString()),
-                Label = "+75 years",
-                ValueLabel = "50"
-            }
-        };
+        #region variables
+        DBSuicideDAO DB;
+        #endregion
 
-        public KNNGraph(string country)
+        public KNNGraph(DBSuicideDAO dB, string country)
         {
             InitializeComponent();
-            Graph01.Chart = new BarChart() { Entries = values };
+            this.DB = dB;
+            this.Title = "Data from " + country;
+            KNNGraphViewModel KNN_VM = new KNNGraphViewModel(dB);
+            Graph01.Chart = new LineChart() { Entries = KNN_VM.Entries };
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            DB.CloseDB();
+            return base.OnBackButtonPressed();
         }
     }
 }

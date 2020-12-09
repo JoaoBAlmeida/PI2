@@ -18,7 +18,8 @@
                Margin="10">
             <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Padding="10" Spacing="10"
                          x:Name="StkMain">
-                <Button Text="Check Graphics" Clicked="goKnnGraph"/>
+                <Image Source="knn_plot.jpeg" Aspect="AspectFit"/>
+                <Button Text="Check Data Used" Clicked="goKnnGraph"/>
                 <Button Text="Check dataset dictionary" Clicked="goKnnDictionary"/>
             </StackLayout>
         </Frame>

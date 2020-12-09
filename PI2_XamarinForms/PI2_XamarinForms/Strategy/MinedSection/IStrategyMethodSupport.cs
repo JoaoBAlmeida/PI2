@@ -6,7 +6,7 @@ namespace PI2_XamarinForms.Strategy.MinedSection
 {
     public interface IStrategyMethodSupport
     {
-        object UISupport();
+        List<object> UISupport();
 
         //TODO - Implement template to access Database
     }

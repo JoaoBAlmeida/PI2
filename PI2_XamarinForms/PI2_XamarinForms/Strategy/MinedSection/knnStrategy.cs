@@ -7,10 +7,13 @@ namespace PI2_XamarinForms.Strategy.MinedSection
 {
     public class knnStrategy : IStrategyMethodSupport
     {
-        public object UISupport()
+        public List<object> UISupport()
         {
             UIGenerator generator = new UIGenerator();
-            return generator.generateCountryPicker();
+            List<object> uielems = new List<object>();
+            uielems.Add(generator.generateSexPicker());
+            uielems.Add(generator.generateCountryPicker());
+            return uielems;
         }
     }
 }
